@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Tanmana</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #ffdee9, #b5fffc);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      perspective: 1000px;
+    }
+
+    .card {
+      background: white;
+      width: 320px;
+      height: 420px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 30px 20px;
+      transform: rotateY(0deg);
+      transition: transform 0.8s ease, box-shadow 0.5s;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card:hover {
+      transform: rotateY(10deg);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+    }
+
+    .balloons {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #ff4081;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 12px 24px;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e73370;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a148c;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+    }
+
+    .name-tag {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #ff4081;
+      font-weight: bold;
+    }
+
+    /* Fireworks (simple effect using circles) */
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: gold;
+      animation: explode 1.2s ease-out infinite;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .decor-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 28px;
+      padding: 15px;
+      color: #ff0080;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="decor-top">🎊🎉✨ Let's Celebrate! ✨🎉🎊</div>
+
+  <div class="card-container">
+    <div class="card" onclick="showMessage()">
+      <div class="balloons">🎈🎉🎂</div>
+      <h1>Happy Birthday!</h1>
+      <p>Wishing you endless joy, love, and laughter!</p>
+      <button class="button">Click Me!</button>
+      <div class="message" id="birthdayMessage">Have an amazing day, full of surprises! 🎂 <br>🎁 -Tanmana 🎈</div>
+      <!-- <div class="name-tag" id="birthdayMessage">Have an amazing day, full of surprises! 🎂</div> -->
+    </div>
+  </div>
+
+  <!-- Firework Particles -->
+  <script>
+    function showMessage() {
+      document.getElementById("birthdayMessage").classList.add("show");
+    }
+
+    // Create simple fireworks
+    const colors = ['gold', 'deeppink', 'cyan', 'orange', 'white'];
+    for (let i = 0; i < 60; i++) {
+      const f = document.createElement('div');
+      f.className = 'firework';
+      f.style.left = `${Math.random() * window.innerWidth}px`;
+      f.style.top = `${Math.random() * window.innerHeight}px`;
+      f.style.setProperty('--x', (Math.random() - 0.5) * 200);
+      f.style.setProperty('--y', (Math.random() - 0.5) * 200);
+      f.style.background = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(f);
+    }
+  </script>
+
+</body>
+</html>
